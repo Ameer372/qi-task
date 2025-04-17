@@ -2,7 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 
 interface Props {
   title: string;
-  content: string;
+  content: string | number;
 }
 
 const StatisticsCard = ({ title, content }: Props) => {

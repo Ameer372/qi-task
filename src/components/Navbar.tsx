@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { ModeToggle } from "./ModeToggle";
 
 const Navbar = () => {
   return (
@@ -11,6 +12,7 @@ const Navbar = () => {
         <Button variant="ghost">Statistics</Button>
         <Button variant="ghost">Merchants</Button>
         <Button variant="ghost">Orders</Button>
+        <ModeToggle />
         <Button variant="outline">Logout</Button>
       </nav>
 
@@ -28,6 +30,7 @@ const Navbar = () => {
               <Button variant="ghost">Merchants</Button>
               <Button variant="ghost">Orders</Button>
               <Button variant="outline">Logout</Button>
+              <ModeToggle />
             </div>
           </SheetContent>
         </Sheet>

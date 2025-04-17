@@ -20,4 +20,11 @@ export const installments = [
     dueDate: "2025-01-15",
     status: "paid",
   },
+  {
+    id: "inst4",
+    orderId: "o2",
+    amount: 90,
+    dueDate: "2025-01-20",
+    status: "unpaid",
+  },
 ];
