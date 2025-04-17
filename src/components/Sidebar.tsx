@@ -1,4 +1,4 @@
-import { Home, Inbox, ListOrdered, Settings } from "lucide-react";
+import { Home, Inbox, ListOrdered } from "lucide-react";
 
 import {
   Sidebar,
@@ -10,28 +10,24 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Link } from "wouter";
 
 // Menu items.
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/",
     icon: Home,
   },
   {
     title: "Merchants Management",
-    url: "#",
+    url: "/merchants",
     icon: Inbox,
   },
   {
     title: "Order Management",
-    url: "#",
+    url: "/orders",
     icon: ListOrdered,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
   },
 ];
 
@@ -45,12 +41,14 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
+                  <Link href={item.url}>
+                    <SidebarMenuButton asChild>
+                      <a>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </Link>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>

@@ -1,5 +1,4 @@
 import StatisticsCard from "@/components/StatisticsCard";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const StatisticsPage = () => {
   return (
