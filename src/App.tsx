@@ -1,5 +1,8 @@
+import Layout from "./components/Layout";
+import StatisticsPage from "./pages/StatisticsPage";
+
 const App = () => {
-  return <div>Dashboard</div>;
+  return <Layout children={[<StatisticsPage />]} />;
 };
 
 export default App;
