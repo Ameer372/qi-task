@@ -1,5 +1,6 @@
 import express from "express";
 import mysql from "mysql2/promise";
+import cors from "cors";
 
 const app = express();
 
@@ -9,6 +10,8 @@ const db = await mysql.createConnection({
   password: "3722",
   database: "dashboard",
 });
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   const queries = [

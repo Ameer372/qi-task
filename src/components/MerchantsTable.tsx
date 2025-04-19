@@ -8,14 +8,7 @@ import {
   TableBody,
   TableCell,
 } from "./ui/table";
-
-type Merchant = {
-  id: number | string;
-  name: string;
-  email: string;
-  phone: string;
-  joinedAt: string;
-};
+import { Merchant } from "@/hooks/useMerchants";
 
 interface MerchantTableProps {
   merchants: Merchant[];
@@ -61,7 +54,7 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
                 <TableCell>{merchant.name}</TableCell>
                 <TableCell>{merchant.email}</TableCell>
                 <TableCell>{merchant.phone}</TableCell>
-                <TableCell>{merchant.joinedAt}</TableCell>
+                <TableCell>{merchant.joined_at.split("T")[0]}</TableCell>
               </TableRow>
             ))
           )}
