@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
+import { Input } from "./ui/input";
 
 interface Order {
   id: string;
@@ -31,14 +32,7 @@ const OrdersTable = ({ orders }: OrdersTableProps) => {
 
   return (
     <div className="p-4">
-      <input
-        type="text"
-        placeholder="Search Orders by id..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="mb-4 w-full max-w-md px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-      />
-      <Table className="border rounded-4xl">
+      <Table className="border ">
         <TableCaption>A list of your recent Orders.</TableCaption>
         <TableHeader>
           <TableRow>
@@ -47,6 +41,13 @@ const OrdersTable = ({ orders }: OrdersTableProps) => {
             <TableHead>Merchant</TableHead>
             <TableHead>Amount</TableHead>
             <TableHead>Status</TableHead>
+            <TableHead className=" self-end w-[200px]">
+              <Input
+                placeholder="Search Orders by id..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
