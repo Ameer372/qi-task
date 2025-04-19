@@ -31,32 +31,44 @@ app.get("/", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-app.get("/merchants", (req, res) => {
-  db.query("SELECT * FROM merchants", (err, result) => {
-    if (err) return console.log(err);
-    return res.json(result);
-  });
+app.get("/merchants", async (req, res) => {
+  try {
+    const results = await db.execute("SELECT * FROM merchants");
+    res.json(results[0]);
+  } catch (err) {
+    console.log("Error:", err);
+    res.status(500).json({ error: "Failed to get merchants" });
+  }
 });
 
-app.get("/orders", (req, res) => {
-  db.query("SELECT * FROM orders", (err, result) => {
-    if (err) return console.log(err);
-    return res.json(result);
-  });
+app.get("/orders", async (req, res) => {
+  try {
+    const results = await db.execute("SELECT * FROM orders");
+    res.json(results[0]);
+  } catch (err) {
+    console.log("Error:", err);
+    res.status(500).json({ error: "Failed to get orders" });
+  }
 });
 
-app.get("/installments", (req, res) => {
-  db.query("SELECT * FROM installments", (err, result) => {
-    if (err) return console.log(err);
-    return res.json(result);
-  });
+app.get("/installments", async (req, res) => {
+  try {
+    const results = await db.execute("SELECT * FROM installments");
+    res.json(results[0]);
+  } catch (err) {
+    console.log("Error:", err);
+    res.status(500).json({ error: "Failed to get installments" });
+  }
 });
 
-app.get("/items", (req, res) => {
-  db.query("SELECT * FROM items", (err, result) => {
-    if (err) return console.log(err);
-    return res.json(result);
-  });
+app.get("/items", async (req, res) => {
+  try {
+    const results = await db.execute("SELECT * FROM items");
+    res.json(results[0]);
+  } catch (err) {
+    console.log("Error:", err);
+    res.status(500).json({ error: "Failed to get items" });
+  }
 });
 
 app.listen(3000, () => {
