@@ -1,7 +1,7 @@
 import APIClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
 
-interface Item {
+export interface Item {
   id: number;
   merchant_id: number;
   name: string;

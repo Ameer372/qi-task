@@ -74,6 +74,35 @@ app.get("/items", async (req, res) => {
   }
 });
 
+app.get("/merchants/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    // Fetch merchant info
+    const [merchantRows] = await db.execute(
+      "SELECT * FROM merchants WHERE id = ?",
+      [id]
+    );
+
+    if (merchantRows.length === 0) {
+      return res.status(404).json({ error: "Merchant not found" });
+    }
+
+    // Fetch items for that merchant
+    const [itemRows] = await db.execute(
+      "SELECT * FROM items WHERE merchant_id = ?",
+      [id]
+    );
+
+    return res.json({
+      merchant: merchantRows[0],
+      items: itemRows,
+    });
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ error: "Failed to get merchant and items" });
+  }
+});
+
 app.listen(3000, () => {
   console.log("Server started on port 3000!");
 });

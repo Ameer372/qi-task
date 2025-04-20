@@ -44,8 +44,9 @@ const StatisticsPage = () => {
           />
         </div>
         {/*Last Orders Table*/}
-        <div className="p-6 rounded-2xl">
-          <OrdersTable orders={orders} />
+        <div className="p-6">
+          <h1 className="text-2xl font-semibold mb-4">Recent Orders</h1>
+          <OrdersTable orders={orders} merchants={merchants} />
         </div>
       </>
     );
@@ -62,8 +63,9 @@ const StatisticsPage = () => {
         <StatisticsCard title="Installment" content={installmentsTotalAmount} />
       </div>
       {/*Last Orders Table*/}
-      <div className="p-6 rounded-2xl">
-        <OrdersTable orders={orders} />
+      <div className="p-6 ">
+        <h1 className="text-2xl font-semibold mb-4">Recent Orders</h1>
+        <OrdersTable orders={orders} merchants={merchants} />
       </div>
     </>
   );

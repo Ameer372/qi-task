@@ -1,4 +1,4 @@
-import { Home, Inbox, ListOrdered } from "lucide-react";
+import { ChartColumn, Users, ClipboardList } from "lucide-react";
 
 import {
   Sidebar,
@@ -16,19 +16,19 @@ import { ModeToggle } from "./ModeToggle";
 // Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Statistics",
     url: "/",
-    icon: Home,
+    icon: ChartColumn,
   },
   {
     title: "Merchants Management",
     url: "/merchants",
-    icon: Inbox,
+    icon: Users,
   },
   {
     title: "Order Management",
     url: "/orders",
-    icon: ListOrdered,
+    icon: ClipboardList,
   },
 ];
 
