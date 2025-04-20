@@ -9,6 +9,7 @@ import {
   TableCell,
 } from "./ui/table";
 import { Merchant } from "@/hooks/useMerchants";
+import { Input } from "./ui/input";
 
 interface MerchantTableProps {
   merchants: Merchant[];
@@ -23,12 +24,12 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
 
   return (
     <div className="p-4">
-      <input
+      <Input
         type="text"
         placeholder="Search merchant by name..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="mb-4 w-full max-w-md px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+        className="mb-4 w-full max-w-md px-4 py-2 "
       />
 
       <Table className="border rounded-4xl">

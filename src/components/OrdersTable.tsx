@@ -10,14 +10,7 @@ import {
 } from "@/components/ui/table";
 import { useState } from "react";
 import { Input } from "./ui/input";
-
-interface Order {
-  id: string;
-  createdAt: string;
-  merchantId: string;
-  total: number;
-  status: string;
-}
+import { Order } from "@/hooks/useOrders";
 
 interface OrdersTableProps {
   orders: Order[];
@@ -27,11 +20,21 @@ const OrdersTable = ({ orders }: OrdersTableProps) => {
   const [search, setSearch] = useState("");
 
   const filteredOrders = orders.filter((order) =>
-    order.id.toLowerCase().includes(search.toLowerCase())
+    order.id.toString().includes(search)
   );
+
+  const total = orders
+    .reduce((total, order) => total + Number(order.total), 0)
+    .toLocaleString();
 
   return (
     <div className="p-4">
+      <Input
+        placeholder="Search Orders by id..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="mb-4 w-full max-w-md px-4 py-2 "
+      />
       <Table className="border ">
         <TableCaption>A list of your recent Orders.</TableCaption>
         <TableHeader>
@@ -41,13 +44,6 @@ const OrdersTable = ({ orders }: OrdersTableProps) => {
             <TableHead>Merchant</TableHead>
             <TableHead>Amount</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead className=" self-end w-[200px]">
-              <Input
-                placeholder="Search Orders by id..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -61,9 +57,11 @@ const OrdersTable = ({ orders }: OrdersTableProps) => {
             filteredOrders.map((order) => (
               <TableRow key={order.id}>
                 <TableCell>{order.id}</TableCell>
-                <TableCell>{order.createdAt}</TableCell>
-                <TableCell>{order.merchantId}</TableCell>
-                <TableCell>{order.total}</TableCell>
+                <TableCell>{order.created_at.split("T")[0]}</TableCell>
+                <TableCell>{order.merchant_id}</TableCell>
+                <TableCell>
+                  {Number(order.total).toLocaleString()} IQD
+                </TableCell>
                 <TableCell>{order.status}</TableCell>
               </TableRow>
             ))
@@ -72,10 +70,7 @@ const OrdersTable = ({ orders }: OrdersTableProps) => {
         <TableFooter>
           <TableRow>
             <TableCell colSpan={4}>Total</TableCell>
-            <TableCell className="text-right ">
-              {filteredOrders.reduce((total, order) => total + order.total, 0)}{" "}
-              IQD
-            </TableCell>
+            <TableCell className="text-right ">{total} IQD</TableCell>
           </TableRow>
         </TableFooter>
       </Table>
