@@ -1,15 +1,21 @@
 import StatisticsCard from "@/components/StatisticsCard";
 import { merchants } from "../data/merchants";
-import { items } from "../data/items";
 import { orders } from "../data/orders";
 import { installments } from "../data/installments";
 import OrdersTable from "@/components/OrdersTable";
+import useItems from "@/hooks/useItems";
 
 const StatisticsPage = () => {
   const installmentsTotalAmount = installments.reduce(
     (total, installment) => total + installment.amount,
     0
   );
+
+  const { data: items, error } = useItems();
+
+  if (!items || error) {
+    return <div>Something went wrong</div>;
+  }
 
   return (
     <>

@@ -15,6 +15,7 @@ const useMerchants = () => {
   return useQuery({
     queryKey: ["merchants"],
     queryFn: apiClient.getAll,
+    staleTime: 60 * 60 * 24 * 1000, // 1 day
   });
 };
 
