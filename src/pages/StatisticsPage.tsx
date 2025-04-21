@@ -21,8 +21,6 @@ const StatisticsPage = () => {
     return <div>Something went wrong</div>;
   }
 
-  console.log(installments);
-
   const installmentsTotalAmount =
     installments
       .reduce((total, installment) => total + Number(installment.amount), 0)

@@ -12,6 +12,9 @@ import {
 } from "@/components/ui/sidebar";
 import { Link } from "wouter";
 import { ModeToggle } from "./ModeToggle";
+import { Button } from "./ui/button";
+import logout from "@/helper/logout";
+import useAuthStore from "@/stores/useAuthStore";
 
 // Menu items.
 const items = [
@@ -33,6 +36,13 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const { token: user, logout: storeLogout } = useAuthStore();
+
+  const handleLogout = () => {
+    storeLogout();
+    logout();
+  };
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -54,8 +64,17 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <div className="p-4 flex justify-end">
+      <div className="p-4 flex justify-end gap-2">
         <ModeToggle />
+        {user ? (
+          <Button variant={"outline"} onClick={handleLogout}>
+            Logout
+          </Button>
+        ) : (
+          <Link href="/login">
+            <Button variant={"outline"}>Login</Button>
+          </Link>
+        )}
       </div>
     </Sidebar>
   );

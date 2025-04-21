@@ -1,6 +1,8 @@
 import express from "express";
 import mysql from "mysql2/promise";
 import cors from "cors";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const app = express();
 
@@ -11,30 +13,68 @@ const db = await mysql.createConnection({
   database: "dashboard",
 });
 
-app.use(cors());
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  const queries = [
-    "SELECT * FROM merchants",
-    "SELECT * FROM orders",
-    "SELECT * FROM installments",
-    "SELECT * FROM items",
-  ];
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
-  Promise.all(queries.map((query) => db.query(query)))
-    .then((results) => {
-      const data = {
-        merchants: results[0][0],
-        orders: results[1][0],
-        installments: results[2][0],
-        items: results[3][0],
-      };
-      res.json(data);
-    })
-    .catch((err) => console.log(err));
+const SECRET_KEY =
+  "6f1d05c1187ff0ccf7258e81b5e5ab6f2b38a884b54f79b3dd01765ea2e03cc7"; // Move to .env in production
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
+
+app.get("/", async (req, res) => {
+  res.send("Connected to backend");
 });
 
-app.get("/merchants", async (req, res) => {
+// this route is not working
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password)
+    return res.status(400).json({ error: "Missing credentials" });
+
+  try {
+    const [rows] = await db.execute("SELECT * FROM admins WHERE username = ?", [
+      username,
+    ]);
+    const admin = rows[0];
+
+    if (!admin) return res.status(401).json({ error: "Invalid credentials" });
+
+    const match = await bcrypt.compare(password, admin.password);
+    if (!match) return res.status(401).json({ error: "Invalid credentials" });
+
+    const token = jwt.sign(
+      { id: admin.id, username: admin.username },
+      SECRET_KEY,
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    res.json({ token });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Login failed" });
+  }
+});
+
+app.get("/merchants", authenticateToken, async (req, res) => {
   try {
     const results = await db.execute("SELECT * FROM merchants");
     res.json(results[0]);
@@ -44,7 +84,7 @@ app.get("/merchants", async (req, res) => {
   }
 });
 
-app.get("/orders", async (req, res) => {
+app.get("/orders", authenticateToken, async (req, res) => {
   try {
     const results = await db.execute("SELECT * FROM orders");
     res.json(results[0]);
@@ -54,7 +94,7 @@ app.get("/orders", async (req, res) => {
   }
 });
 
-app.get("/installments", async (req, res) => {
+app.get("/installments", authenticateToken, async (req, res) => {
   try {
     const results = await db.execute("SELECT * FROM installments");
     res.json(results[0]);
@@ -64,7 +104,7 @@ app.get("/installments", async (req, res) => {
   }
 });
 
-app.get("/items", async (req, res) => {
+app.get("/items", authenticateToken, async (req, res) => {
   try {
     const results = await db.execute("SELECT * FROM items");
     res.json(results[0]);
@@ -74,7 +114,7 @@ app.get("/items", async (req, res) => {
   }
 });
 
-app.get("/merchants/:id", async (req, res) => {
+app.get("/merchants/:id", authenticateToken, async (req, res) => {
   const id = req.params.id;
   try {
     // Fetch merchant info
