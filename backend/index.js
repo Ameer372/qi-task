@@ -37,11 +37,10 @@ function authenticateToken(req, res, next) {
   });
 }
 
-app.get("/", async (req, res) => {
+app.get("/", authenticateToken, async (req, res) => {
   res.send("Connected to backend");
 });
 
-// this route is not working
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 

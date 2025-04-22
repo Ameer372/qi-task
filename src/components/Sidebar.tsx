@@ -1,4 +1,4 @@
-import { ChartColumn, Users, ClipboardList } from "lucide-react";
+import { ChartColumn, Users, ClipboardList, LogOut } from "lucide-react";
 
 import {
   Sidebar,
@@ -14,7 +14,12 @@ import { Link } from "wouter";
 import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
 import logout from "@/helper/logout";
-import useAuthStore from "@/stores/useAuthStore";
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@radix-ui/react-tooltip";
 
 // Menu items.
 const items = [
@@ -36,10 +41,7 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const { token: user, logout: storeLogout } = useAuthStore();
-
   const handleLogout = () => {
-    storeLogout();
     logout();
   };
 
@@ -66,15 +68,19 @@ export function AppSidebar() {
       </SidebarContent>
       <div className="p-4 flex justify-end gap-2">
         <ModeToggle />
-        {user ? (
-          <Button variant={"outline"} onClick={handleLogout}>
-            Logout
-          </Button>
-        ) : (
-          <Link href="/login">
-            <Button variant={"outline"}>Login</Button>
-          </Link>
-        )}
+
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant={"outline"} onClick={handleLogout}>
+                <LogOut />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent className="p-2 m-2 border border-gray shadow rounded-2xl">
+              <p className="text-sm font-semibold text-gray-600">Logout</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </div>
     </Sidebar>
   );

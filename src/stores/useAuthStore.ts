@@ -8,8 +8,8 @@ interface AuthStore {
 
 const useAuthStore = create<AuthStore>((set) => ({
   token: localStorage.getItem("token"),
-  login: (token) => set({ token }),
-  logout: () => set({ token: null }),
+  login: (token) => set((store) => ({ ...store, token })),
+  logout: () => set((store) => ({ ...store, token: null })),
 }));
 
 export default useAuthStore;
