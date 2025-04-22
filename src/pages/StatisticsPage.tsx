@@ -63,7 +63,9 @@ const StatisticsPage = () => {
         <Link href="/merchants" className={"flex-1"}>
           <StatisticsCard title="Merchants" content={merchants.length} />
         </Link>
-        <StatisticsCard title="Items" content={items.length} />
+        <Link href="/items" className={"flex-1"}>
+          <StatisticsCard title="Items" content={items.length} />
+        </Link>
         <Link href="/orders" className={"flex-1"}>
           <StatisticsCard title="Orders" content={orders.length} />
         </Link>

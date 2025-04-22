@@ -1,11 +1,14 @@
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  ColumnDef,
+  Row,
+  Cell,
 } from "@tanstack/react-table";
+
 import {
   Table,
   TableBody,
@@ -15,70 +18,38 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { Item } from "@/hooks/useItems";
+import { itemColumns } from "@/helper/itemsTableColumns";
+import { Checkbox } from "@/components/ui/checkbox";
 
-type Props = {
-  items: Item[];
-};
-
-const ItemsTable = ({ items }: Props) => {
+const ItemsTable = ({ items }: { items: Item[] }) => {
   const [rowSelection, setRowSelection] = useState({});
 
-  const columns: ColumnDef<Item>[] = [
-    {
-      id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={table.getIsAllPageRowsSelected()}
-          onCheckedChange={(value) => {
-            table.toggleAllPageRowsSelected(!!value);
-          }}
-          aria-label="Select all"
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      ),
-      enableSorting: false,
-      enableHiding: false,
-    },
-    {
-      accessorKey: "id",
-      header: "ID",
-    },
-    {
-      accessorKey: "merchant_id",
-      header: "Merchant ID",
-    },
-    {
-      accessorKey: "name",
-      header: "Name",
-    },
-    {
-      accessorKey: "description",
-      header: "Description",
-    },
-    {
-      accessorKey: "category",
-      header: "Category",
-    },
-    {
-      accessorKey: "price",
-      header: "Price",
-      cell: ({ getValue }) => {
-        const value = getValue<number>();
-        return `${Number(value).toLocaleString()} IQD`;
-      },
-    },
-  ];
+  // Checkbox column
+  const checkboxColumn: ColumnDef<Item> = {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={table.getIsAllPageRowsSelected()}
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  };
 
-  const table = useReactTable({
+  const columns: ColumnDef<Item>[] = [checkboxColumn, ...itemColumns];
+
+  const table = useReactTable<Item>({
     data: items,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -92,7 +63,7 @@ const ItemsTable = ({ items }: Props) => {
   });
 
   return (
-    <div className="rounded-xl border p-4  shadow">
+    <div className="rounded-xl border p-4 shadow">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -111,9 +82,9 @@ const ItemsTable = ({ items }: Props) => {
 
         <TableBody>
           {table.getRowModel().rows.length ? (
-            table.getRowModel().rows.map((row) => (
+            table.getRowModel().rows.map((row: Row<Item>) => (
               <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
+                {row.getVisibleCells().map((cell: Cell<Item, unknown>) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>

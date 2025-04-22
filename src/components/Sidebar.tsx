@@ -22,7 +22,7 @@ import {
 } from "@radix-ui/react-tooltip";
 
 // Menu items.
-const items = [
+const links = [
   {
     title: "Statistics",
     url: "/",
@@ -36,6 +36,11 @@ const items = [
   {
     title: "Order Management",
     url: "/orders",
+    icon: ClipboardList,
+  },
+  {
+    title: "Items",
+    url: "/items",
     icon: ClipboardList,
   },
 ];
@@ -52,12 +57,12 @@ export function AppSidebar() {
           <SidebarGroupLabel>E-commerce Dashboard</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+              {links.map((link) => (
+                <SidebarMenuItem key={link.title}>
                   <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
+                    <Link href={link.url}>
+                      <link.icon />
+                      <span>{link.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
