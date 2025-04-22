@@ -72,7 +72,11 @@ export function AppSidebar() {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant={"outline"} onClick={handleLogout}>
+              <Button
+                variant={"outline"}
+                onClick={handleLogout}
+                className="hover:bg-red-500 hover:text-white hover:cursor-pointer"
+              >
                 <LogOut />
               </Button>
             </TooltipTrigger>

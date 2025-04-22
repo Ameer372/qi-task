@@ -62,7 +62,7 @@ app.post("/login", async (req, res) => {
       { id: admin.id, username: admin.username },
       SECRET_KEY,
       {
-        expiresIn: "1h",
+        expiresIn: "30d",
       }
     );
 

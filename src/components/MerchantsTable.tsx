@@ -57,7 +57,10 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
               filteredMerchants.map((merchant) => (
                 <TableRow key={merchant.id}>
                   <TableCell>
-                    <Link href={`/merchants/${merchant.id}`}>
+                    <Link
+                      href={`/merchants/${merchant.id}`}
+                      className="underline hover:text-blue-600"
+                    >
                       {merchant.name}
                     </Link>
                   </TableCell>

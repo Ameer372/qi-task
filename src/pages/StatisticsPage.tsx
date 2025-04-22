@@ -5,6 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import useOrders from "@/hooks/useOrders";
 import useMerchants from "@/hooks/useMerchants";
 import useInstallments from "@/hooks/useInstallments";
+import { Link } from "wouter";
 
 const StatisticsPage = () => {
   const isMobile = useIsMobile();
@@ -33,9 +34,13 @@ const StatisticsPage = () => {
     return (
       <>
         <div className="p-10 flex gap-6 md:flex-row flex-col">
-          <StatisticsCard title="Merchants" content={merchants.length} />
+          <Link href="/merchants">
+            <StatisticsCard title="Merchants" content={merchants.length} />
+          </Link>
           <StatisticsCard title="Items" content={items.length} />
-          <StatisticsCard title="Orders" content={orders.length} />
+          <Link href="/orders">
+            <StatisticsCard title="Orders" content={orders.length} />
+          </Link>
           <StatisticsCard
             title="Installment"
             content={installmentsTotalAmount}
@@ -55,9 +60,13 @@ const StatisticsPage = () => {
   return (
     <>
       <div className="p-10 flex gap-6 md:flex-row flex-col">
-        <StatisticsCard title="Merchants" content={merchants.length} />
+        <Link href="/merchants" className={"flex-1"}>
+          <StatisticsCard title="Merchants" content={merchants.length} />
+        </Link>
         <StatisticsCard title="Items" content={items.length} />
-        <StatisticsCard title="Orders" content={orders.length} />
+        <Link href="/orders" className={"flex-1"}>
+          <StatisticsCard title="Orders" content={orders.length} />
+        </Link>
         <StatisticsCard title="Installment" content={installmentsTotalAmount} />
       </div>
       {/*Last Orders Table*/}

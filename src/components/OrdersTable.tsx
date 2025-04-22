@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Order } from "@/hooks/useOrders";
 import { Merchant } from "@/hooks/useMerchants";
+import { Link } from "wouter";
 
 interface OrdersTableProps {
   orders: Order[];
@@ -65,11 +66,16 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
                   <TableCell>{order.id}</TableCell>
                   <TableCell>{order.created_at.split("T")[0]}</TableCell>
                   <TableCell>
-                    {
-                      merchants.find(
-                        (merchant) => merchant.id === order.merchant_id
-                      )?.name
-                    }
+                    <Link
+                      href={`/merchants/${order.merchant_id}`}
+                      className={"underline hover:text-blue-600"}
+                    >
+                      {
+                        merchants.find(
+                          (merchant) => merchant.id === order.merchant_id
+                        )?.name
+                      }
+                    </Link>
                   </TableCell>
                   <TableCell>
                     {Number(order.total).toLocaleString()} IQD
