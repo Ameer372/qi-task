@@ -31,7 +31,7 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
     .toLocaleString();
 
   return (
-    <div className="p-4 ">
+    <div className="p-4">
       <Input
         placeholder="Search Orders by id..."
         value={search}

@@ -72,9 +72,12 @@ const StatisticsPage = () => {
         <StatisticsCard title="Installment" content={installmentsTotalAmount} />
       </div>
       {/*Last Orders Table*/}
-      <div className="p-6 ">
+      <div className="p-6">
         <h1 className="text-2xl font-semibold mb-4">Recent Orders</h1>
-        <OrdersTable orders={orders} merchants={merchants} />
+
+        <div className="flex-1">
+          <OrdersTable orders={orders} merchants={merchants} />
+        </div>
       </div>
     </>
   );

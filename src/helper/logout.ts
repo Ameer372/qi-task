@@ -4,6 +4,7 @@ import { navigate } from "wouter/use-browser-location";
 const logout = () => {
   localStorage.removeItem("token");
   useAuthStore.getState().logout();
+
   navigate("/login");
 };
 

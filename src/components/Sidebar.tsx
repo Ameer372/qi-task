@@ -1,5 +1,9 @@
-import { ChartColumn, Users, ClipboardList, LogOut } from "lucide-react";
-
+import { useQueryClient } from "@tanstack/react-query";
+import { ModeToggle } from "./ModeToggle";
+import { LogOut } from "lucide-react";
+import { Button } from "./ui/button";
+import logout from "@/helper/logout";
+import { Link } from "wouter";
 import {
   Sidebar,
   SidebarContent,
@@ -10,43 +14,18 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Link } from "wouter";
-import { ModeToggle } from "./ModeToggle";
-import { Button } from "./ui/button";
-import logout from "@/helper/logout";
 import {
   TooltipProvider,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
 } from "@radix-ui/react-tooltip";
-
-// Menu items.
-const links = [
-  {
-    title: "Statistics",
-    url: "/",
-    icon: ChartColumn,
-  },
-  {
-    title: "Merchants Management",
-    url: "/merchants",
-    icon: Users,
-  },
-  {
-    title: "Order Management",
-    url: "/orders",
-    icon: ClipboardList,
-  },
-  {
-    title: "Items",
-    url: "/items",
-    icon: ClipboardList,
-  },
-];
+import { links } from "@/helper/links";
 
 export function AppSidebar() {
+  const queryClient = useQueryClient();
   const handleLogout = () => {
+    queryClient.clear();
     logout();
   };
 
