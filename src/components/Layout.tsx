@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {token ? (
         <SidebarProvider>
           <AppSidebar />
-          <main className="w-full">
+          <main className="w-full p-6">
             <SidebarTrigger className="md:hidden" />
             {children}
           </main>

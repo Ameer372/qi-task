@@ -1,4 +1,5 @@
 import ItemsTable from "@/components/ItemsTable";
+import OrdersTable from "@/components/OrdersTable";
 import {
   Card,
   CardContent,
@@ -6,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import useItems from "@/hooks/useItems";
 import useMerchant from "@/hooks/useMerchant";
 import { Calendar, MailIcon, Phone } from "lucide-react";
 import { useParams } from "wouter";
@@ -14,9 +14,8 @@ import { useParams } from "wouter";
 const MerchantDetailsPage = () => {
   const { id } = useParams();
   const { data } = useMerchant(id!);
-  const { data: items } = useItems();
 
-  if (!data || !items) return <div>Loading...</div>;
+  if (!data) return <div>Loading...</div>;
 
   const merchant = data.merchant;
 
@@ -43,8 +42,10 @@ const MerchantDetailsPage = () => {
         </CardContent>
       </Card>
       <div>
-        <h1 className="text-2xl font-semibold mb-4">Items</h1>
+        <h1 className="text-2xl font-semibold my-4">Items</h1>
         <ItemsTable items={data.items} />
+        <h1 className="text-2xl font-semibold my-4">Orders</h1>
+        <OrdersTable orders={data.orders} />
       </div>
     </div>
   );

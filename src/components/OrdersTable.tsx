@@ -16,7 +16,7 @@ import { Link } from "wouter";
 
 interface OrdersTableProps {
   orders: Order[];
-  merchants: Merchant[];
+  merchants?: Merchant[];
 }
 
 const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
@@ -31,7 +31,7 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
     .toLocaleString();
 
   return (
-    <div className="p-4">
+    <>
       <Input
         placeholder="Search Orders by id..."
         value={search}
@@ -45,7 +45,7 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
             <TableRow>
               <TableHead>Order Number</TableHead>
               <TableHead>Order Date</TableHead>
-              <TableHead>Merchant</TableHead>
+              {merchants && <TableHead>Merchant</TableHead>}
               <TableHead>Amount</TableHead>
               <TableHead>Status</TableHead>
             </TableRow>
@@ -65,18 +65,20 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
                 <TableRow key={order.id}>
                   <TableCell>{order.id}</TableCell>
                   <TableCell>{order.created_at.split("T")[0]}</TableCell>
-                  <TableCell>
-                    <Link
-                      href={`/merchants/${order.merchant_id}`}
-                      className={"underline hover:text-blue-600"}
-                    >
-                      {
-                        merchants.find(
-                          (merchant) => merchant.id === order.merchant_id
-                        )?.name
-                      }
-                    </Link>
-                  </TableCell>
+                  {merchants && (
+                    <TableCell>
+                      <Link
+                        href={`/merchants/${order.merchant_id}`}
+                        className={"underline hover:text-blue-600"}
+                      >
+                        {
+                          merchants.find(
+                            (merchant) => merchant.id === order.merchant_id
+                          )?.name
+                        }
+                      </Link>
+                    </TableCell>
+                  )}
                   <TableCell>
                     {Number(order.total).toLocaleString()} IQD
                   </TableCell>
@@ -93,7 +95,7 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
           </TableFooter>
         </Table>
       </div>
-    </div>
+    </>
   );
 };
 

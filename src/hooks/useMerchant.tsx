@@ -2,10 +2,12 @@ import APIClient from "@/services/api-client";
 import { Merchant } from "./useMerchants";
 import { useQuery } from "@tanstack/react-query";
 import { Item } from "./useItems";
+import { Order } from "./useOrders";
 
 interface Props {
   merchant: Merchant;
   items: Item[];
+  orders: Order[];
 }
 
 const apiClient = new APIClient<Props>("/merchants");

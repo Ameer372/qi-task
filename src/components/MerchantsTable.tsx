@@ -24,7 +24,7 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
   );
 
   return (
-    <div className="p-4">
+    <>
       <Input
         type="text"
         placeholder="Search merchant by name..."
@@ -73,7 +73,7 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
           </TableBody>
         </Table>
       </div>
-    </div>
+    </>
   );
 };
 

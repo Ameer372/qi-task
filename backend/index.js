@@ -3,8 +3,10 @@ import mysql from "mysql2/promise";
 import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
 const app = express();
+dotenv.config();
 
 const db = await mysql.createConnection({
   host: "localhost",
@@ -22,8 +24,7 @@ app.use(
   })
 );
 
-const SECRET_KEY =
-  "6f1d05c1187ff0ccf7258e81b5e5ab6f2b38a884b54f79b3dd01765ea2e03cc7"; // Move to .env in production
+const SECRET_KEY = process.env.SECRET_KEY;
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
@@ -132,9 +133,15 @@ app.get("/merchants/:id", authenticateToken, async (req, res) => {
       [id]
     );
 
+    const [orderRows] = await db.execute(
+      "SELECT * FROM orders WHERE merchant_id = ?",
+      [id]
+    );
+
     return res.json({
       merchant: merchantRows[0],
       items: itemRows,
+      orders: orderRows,
     });
   } catch (err) {
     console.error("Error:", err);
