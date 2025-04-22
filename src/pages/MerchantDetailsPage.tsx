@@ -1,6 +1,14 @@
 import ItemsTable from "@/components/ItemsTable";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import useItems from "@/hooks/useItems";
 import useMerchant from "@/hooks/useMerchant";
+import { Calendar, MailIcon, Phone } from "lucide-react";
 import { useParams } from "wouter";
 
 const MerchantDetailsPage = () => {
@@ -13,24 +21,28 @@ const MerchantDetailsPage = () => {
   const merchant = data.merchant;
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">Merchant Details</h1>
-      <div className="flex flex-col gap-2 p-4">
-        <div>
-          <span className="font-semibold">Name:</span> {merchant.name}
-        </div>
-        <div>
-          <span className="font-semibold">Email:</span> {merchant.email}
-        </div>
-        <div>
-          <span className="font-semibold">Phone:</span> {merchant.phone}
-        </div>
-        <div>
-          <span className="font-semibold">Joined:</span>{" "}
-          {merchant.joined_at.split("T")[0]}
-        </div>
-      </div>
-      <div className="p-6">
+    <div className="p-10">
+      <Card className="mb-4 w-sm">
+        <CardHeader>
+          <CardTitle className="font-semibold text-2xl">
+            {merchant.name}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="font-bold text-2xl">
+          <CardDescription className="flex flex-col">
+            <p className="flex gap-1 items-center">
+              <Phone size={15} /> {merchant.phone}
+            </p>
+            <p className="flex gap-1 items-center">
+              <MailIcon size={15} /> {merchant.email}
+            </p>
+            <p className="flex gap-1 items-center">
+              <Calendar size={15} /> {merchant.joined_at.split("T")[0]}
+            </p>
+          </CardDescription>
+        </CardContent>
+      </Card>
+      <div>
         <h1 className="text-2xl font-semibold mb-4">Items</h1>
         <ItemsTable items={data.items} />
       </div>

@@ -1,5 +1,5 @@
 import { flexRender, Row, Cell } from "@tanstack/react-table";
-import { TableCell, TableRow } from "@/components/ui/table";
+import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Item } from "@/hooks/useItems";
 
 type Props = {
@@ -10,16 +10,18 @@ type Props = {
 const TableRenderer = ({ rows, columnsLength }: Props) => {
   if (!rows.length) {
     return (
-      <TableRow>
-        <TableCell colSpan={columnsLength} className="text-center">
-          No items found.
-        </TableCell>
-      </TableRow>
+      <TableBody>
+        <TableRow>
+          <TableCell colSpan={columnsLength} className="text-center">
+            No items found.
+          </TableCell>
+        </TableRow>
+      </TableBody>
     );
   }
 
   return (
-    <>
+    <TableBody>
       {rows.map((row: Row<Item>) => (
         <TableRow key={row.id}>
           {row.getVisibleCells().map((cell: Cell<Item, unknown>) => (
@@ -29,7 +31,7 @@ const TableRenderer = ({ rows, columnsLength }: Props) => {
           ))}
         </TableRow>
       ))}
-    </>
+    </TableBody>
   );
 };
 
