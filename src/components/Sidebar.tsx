@@ -21,6 +21,7 @@ import {
   TooltipContent,
 } from "@radix-ui/react-tooltip";
 import { links } from "@/helper/links";
+import logoYellow from "../assets/qi-logo-yellow.png";
 
 export function AppSidebar() {
   const queryClient = useQueryClient();
@@ -33,7 +34,9 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>E-commerce Dashboard</SidebarGroupLabel>
+          <SidebarGroupLabel className="gap-2">
+            <img src={logoYellow} width={20} /> E-commerce Dashboard
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {links.map((link) => (

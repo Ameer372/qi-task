@@ -1,4 +1,4 @@
-import { ChartColumn, Users, ClipboardList } from "lucide-react";
+import { ChartColumn, Users, ClipboardList, LayoutList } from "lucide-react";
 
 // Menu links.
 const links = [
@@ -20,7 +20,7 @@ const links = [
   {
     title: "Items",
     url: "/items",
-    icon: ClipboardList,
+    icon: LayoutList,
   },
 ];
 

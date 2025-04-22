@@ -38,7 +38,7 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
         onChange={(e) => setSearch(e.target.value)}
         className="mb-4 w-full max-w-md px-4 py-2 shadow"
       />
-      <div className="rounded-xl border p-4 shadow">
+      <div className="rounded-xl border p-4 shadow bg-background dark:bg-background">
         <Table>
           <TableCaption>A list of your recent Orders.</TableCaption>
           <TableHeader>
@@ -69,7 +69,7 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
                     <TableCell>
                       <Link
                         href={`/merchants/${order.merchant_id}`}
-                        className={"underline hover:text-blue-600"}
+                        className={"underline hover:text-yellow-300"}
                       >
                         {
                           merchants.find(

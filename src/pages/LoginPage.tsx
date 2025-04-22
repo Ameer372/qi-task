@@ -14,7 +14,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useAuthStore from "@/stores/useAuthStore";
-import image from "../assets/auth.png";
 
 const loginSchema = z.object({
   username: z.string({ required_error: "Username is required" }),
@@ -50,12 +49,11 @@ const LoginPage = () => {
   const loginMutation = useAuth();
 
   return (
-    <div className="flex  items-center justify-center h-screen gap-4 login">
-      <img src={image} width={800} height={800} alt="Login" />
+    <div className="flex items-center justify-center h-screen gap-4 login">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col w-sm p-6 space-y-6 border rounded-4xl bg-white shadow-2xl"
+          className="flex flex-col w-md p-6 space-y-6 border rounded-4xl bg-background dark:bg-background shadow-2xl"
         >
           <h1 className="text-4xl font-semibold">Login</h1>
           <FormField

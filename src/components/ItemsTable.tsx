@@ -14,7 +14,7 @@ const ItemsTable = ({ items }: { items: Item[] }) => {
   const table = useItemTable(items);
 
   return (
-    <div className="rounded-xl border p-4 shadow">
+    <div className="rounded-xl border p-4 shadow bg-background dark:bg-background">
       <Table>
         <TableCaption>A list of items.</TableCaption>
         <TableHeader>

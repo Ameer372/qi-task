@@ -120,8 +120,16 @@
 }
 
 .login {
-  background-image: url("assets/bg.jpg");
-  background-size: fill;
+  background-image: url("assets/login.png");
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.background {
+  position: fixed;
+  opacity: 0.03;
+  left: -10%;
+  width: 50%;
+  z-index: -1;
 }

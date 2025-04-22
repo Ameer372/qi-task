@@ -6,6 +6,7 @@ import useOrders from "@/hooks/useOrders";
 import useMerchants from "@/hooks/useMerchants";
 import useInstallments from "@/hooks/useInstallments";
 import { Link } from "wouter";
+import { Users, ClipboardList, LayoutList, HandCoins } from "lucide-react";
 
 const StatisticsPage = () => {
   const isMobile = useIsMobile();
@@ -32,16 +33,30 @@ const StatisticsPage = () => {
   }
   if (isMobile)
     return (
-      <>
-        <div className="p-10 flex gap-6 md:flex-row flex-col">
+      <div className="p-6">
+        <h1>Statistics</h1>
+        <div className="p-6 flex gap-6 md:flex-row flex-col">
           <Link href="/merchants">
-            <StatisticsCard title="Merchants" content={merchants.length} />
-          </Link>
-          <StatisticsCard title="Items" content={items.length} />
-          <Link href="/orders">
-            <StatisticsCard title="Orders" content={orders.length} />
+            <StatisticsCard
+              icon={<Users />}
+              title="Merchants"
+              content={merchants.length}
+            />
           </Link>
           <StatisticsCard
+            icon={<LayoutList />}
+            title="Items"
+            content={items.length}
+          />
+          <Link href="/orders">
+            <StatisticsCard
+              icon={<ClipboardList />}
+              title="Orders"
+              content={orders.length}
+            />
+          </Link>
+          <StatisticsCard
+            icon={<HandCoins />}
             title="Installment"
             content={installmentsTotalAmount}
           />
@@ -51,25 +66,46 @@ const StatisticsPage = () => {
           <h1 className="text-2xl font-semibold mb-4">Recent Orders</h1>
           <OrdersTable orders={orders} merchants={merchants} />
         </div>
-      </>
+      </div>
     );
 
   {
     /*Desktop*/
   }
   return (
-    <>
-      <div className="p-10 flex gap-6 md:flex-row flex-col">
+    <div className="p-6">
+      <h1 className="text-2xl font-semibold mb-4">Statistics</h1>
+      <div className="p-6 flex gap-6 md:flex-row flex-col">
         <Link href="/merchants" className={"flex-1"}>
-          <StatisticsCard title="Merchants" content={merchants.length} />
+          <StatisticsCard
+            icon={<Users className="fill-yellow-300 dark:fill-yellow-500" />}
+            title="Merchants"
+            content={merchants.length}
+          />
         </Link>
         <Link href="/items" className={"flex-1"}>
-          <StatisticsCard title="Items" content={items.length} />
+          <StatisticsCard
+            icon={
+              <LayoutList className="fill-yellow-300 dark:fill-yellow-500" />
+            }
+            title="Items"
+            content={items.length}
+          />
         </Link>
         <Link href="/orders" className={"flex-1"}>
-          <StatisticsCard title="Orders" content={orders.length} />
+          <StatisticsCard
+            icon={
+              <ClipboardList className="fill-yellow-300 dark:fill-yellow-500" />
+            }
+            title="Orders"
+            content={orders.length}
+          />
         </Link>
-        <StatisticsCard title="Installment" content={installmentsTotalAmount} />
+        <StatisticsCard
+          icon={<HandCoins className="fill-yellow-300 dark:fill-yellow-500" />}
+          title="Installment"
+          content={installmentsTotalAmount}
+        />
       </div>
       {/*Last Orders Table*/}
       <div className="p-6">
@@ -79,7 +115,7 @@ const StatisticsPage = () => {
           <OrdersTable orders={orders} merchants={merchants} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
