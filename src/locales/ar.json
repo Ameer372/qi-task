@@ -3,6 +3,7 @@
   "login": "تسجيل الدخول",
   "logout": "تسجيل الخروج",
   "statistics": "إحصائيات",
+  "merchants": "المتاجر",
   "merchants_management": "إدارة المتاجر",
   "orders_management": "إدارة الطلبات",
   "items": "البضائع",
@@ -28,5 +29,10 @@
   "description": "الوصف",
   "category": "القسم",
   "price": "السعر",
-  "search_merchants:": "ابحث عن المتاجر بواسطة الاسم..."
+  "search_merchants:": "ابحث عن المتاجر بواسطة الاسم...",
+  "loading": "...جاري التحميل",
+  "orders": "الطلبات",
+  "installments": "الأقساط",
+  "username": "اسم المستخدم",
+  "password": "رمز الدخول"
 }

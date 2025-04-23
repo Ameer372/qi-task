@@ -18,12 +18,20 @@ const LangToggle = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
         <DropdownMenuItem>
-          <Button onClick={() => i18n.changeLanguage("en")} variant="ghost">
+          <Button
+            onClick={() => i18n.changeLanguage("en")}
+            variant="ghost"
+            className="w-full"
+          >
             EN
           </Button>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Button onClick={() => i18n.changeLanguage("ar")} variant="ghost">
+          <Button
+            onClick={() => i18n.changeLanguage("ar")}
+            variant="ghost"
+            className="w-full"
+          >
             Ar
           </Button>
         </DropdownMenuItem>

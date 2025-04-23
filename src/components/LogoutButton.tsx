@@ -26,7 +26,7 @@ const LogoutButton = ({ onClick: handleLogout }: Props) => {
           </Button>
         </TooltipTrigger>
         <TooltipContent className="p-2 m-2 border border-gray shadow rounded-2xl">
-          <p className="text-sm font-semibold text-gray-600">{t("logout")}</p>
+          <p className="text-sm font-semibold ">{t("logout")}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

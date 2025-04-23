@@ -10,14 +10,15 @@ import {
 } from "./ui/table";
 import { Merchant } from "@/hooks/useMerchants";
 import { Input } from "./ui/input";
-import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "wouter";
 
 interface MerchantTableProps {
   merchants: Merchant[];
 }
 
 const MerchantTable = ({ merchants }: MerchantTableProps) => {
+  const [, navigate] = useLocation();
   const [search, setSearch] = useState("");
   const { t } = useTranslation();
 
@@ -39,6 +40,7 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
           <TableCaption>{t("list_of_merchants")}</TableCaption>
           <TableHeader>
             <TableRow>
+              <TableHead>{t("id")}</TableHead>
               <TableHead>{t("name")}</TableHead>
               <TableHead>{t("email")}</TableHead>
               <TableHead>{t("phone")}</TableHead>
@@ -57,15 +59,13 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
               </TableRow>
             ) : (
               filteredMerchants.map((merchant) => (
-                <TableRow key={merchant.id}>
-                  <TableCell>
-                    <Link
-                      href={`/merchants/${merchant.id}`}
-                      className="underline hover:text-yellow-300"
-                    >
-                      {merchant.name}
-                    </Link>
-                  </TableCell>
+                <TableRow
+                  onClick={() => navigate(`/merchants/${merchant.id}`)}
+                  key={merchant.id}
+                  className="cursor-pointer hover:font-semibold transition-all ease-in"
+                >
+                  <TableCell>{merchant.id}</TableCell>
+                  <TableCell>{merchant.name}</TableCell>
                   <TableCell>{merchant.email}</TableCell>
                   <TableCell>{merchant.phone}</TableCell>
                   <TableCell>{merchant.joined_at.split("T")[0]}</TableCell>

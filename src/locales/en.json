@@ -3,6 +3,7 @@
   "login": "Login",
   "logout": "Logout",
   "statistics": "Statistics",
+  "merchants": "Merchants",
   "merchants_management": "Merchants Management",
   "orders_management": "Order Management",
   "items": "Items",
@@ -28,5 +29,10 @@
   "description": "Description",
   "category": "Category",
   "price": "Price",
-  "search_merchants:": "Search Merchants by name..."
+  "search_merchants:": "Search Merchants by name...",
+  "loading": "Loading...",
+  "orders": "Orders",
+  "installments": "Installments",
+  "username": "Username",
+  "password": "Password"
 }

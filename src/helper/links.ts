@@ -3,22 +3,22 @@ import { ChartColumn, Users, ClipboardList, LayoutList } from "lucide-react";
 // Menu links.
 const links = [
   {
-    title: "Statistics",
+    title: "statistics",
     url: "/",
     icon: ChartColumn,
   },
   {
-    title: "Merchants Management",
+    title: "merchants_management",
     url: "/merchants",
     icon: Users,
   },
   {
-    title: "Order Management",
+    title: "orders_management",
     url: "/orders",
     icon: ClipboardList,
   },
   {
-    title: "Items",
+    title: "items",
     url: "/items",
     icon: LayoutList,
   },

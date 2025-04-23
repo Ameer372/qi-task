@@ -3,12 +3,15 @@ import useOrders from "./useOrders";
 import useMerchants from "./useMerchants";
 import useInstallments from "./useInstallments";
 import { Users, ClipboardList, LayoutList, HandCoins } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const useStatistics = () => {
   const { data: items, error: itemsError } = useItems();
   const { data: orders, error: ordersError } = useOrders();
   const { data: merchants, error: merchantsError } = useMerchants();
   const { data: installments, error: installmentsError } = useInstallments();
+
+  const { t } = useTranslation();
 
   const hasError =
     itemsError || ordersError || merchantsError || installmentsError;
@@ -21,25 +24,25 @@ const useStatistics = () => {
 
   const stats = [
     {
-      title: "Merchants",
+      title: t("merchants"),
       count: merchants?.length || 0,
       icon: Users,
       href: "/merchants",
     },
     {
-      title: "Items",
+      title: t("items"),
       count: items?.length || 0,
       icon: LayoutList,
       href: "/items",
     },
     {
-      title: "Orders",
+      title: t("orders"),
       count: orders?.length || 0,
       icon: ClipboardList,
       href: "/orders",
     },
     {
-      title: "Installment",
+      title: t("installments"),
       count: installmentsTotal,
       icon: HandCoins,
     },

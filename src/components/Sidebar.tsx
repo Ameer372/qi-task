@@ -6,7 +6,6 @@ import LangToggle from "./LangToggle";
 import LogoutButton from "./LogoutButton";
 import logout from "@/helper/logout";
 import { Link } from "wouter";
-
 import {
   Sidebar,
   SidebarContent,
@@ -17,8 +16,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useTranslation } from "react-i18next";
 
-export function AppSidebar() {
+const AppSidebar = () => {
+  const { t } = useTranslation();
+
   const queryClient = useQueryClient();
   const handleLogout = () => {
     queryClient.clear();
@@ -39,7 +41,7 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <Link href={link.url}>
                       <link.icon />
-                      <span>{link.title}</span>
+                      <span>{t(link.title)}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -55,4 +57,6 @@ export function AppSidebar() {
       </div>
     </Sidebar>
   );
-}
+};
+
+export default AppSidebar;

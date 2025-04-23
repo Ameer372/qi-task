@@ -46,10 +46,10 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
           <TableHeader>
             <TableRow>
               <TableHead>{t("order_number")}</TableHead>
-              <TableHead>{t("order_date")}</TableHead>
               {merchants && <TableHead>{t("merchant")}</TableHead>}
-              <TableHead>{t("amount")}</TableHead>
+              <TableHead>{t("order_date")}</TableHead>
               <TableHead>{t("status")}</TableHead>
+              <TableHead>{t("amount")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -66,7 +66,6 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
               filteredOrders.map((order) => (
                 <TableRow key={order.id}>
                   <TableCell>{order.id}</TableCell>
-                  <TableCell>{order.created_at.split("T")[0]}</TableCell>
                   {merchants && (
                     <TableCell>
                       <Link
@@ -81,10 +80,9 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
                       </Link>
                     </TableCell>
                   )}
-                  <TableCell>
-                    {Number(order.total).toLocaleString()} IQD
-                  </TableCell>
+                  <TableCell>{order.created_at.split("T")[0]}</TableCell>
                   <TableCell>{order.status}</TableCell>
+                  <TableCell>{Number(order.total).toLocaleString()}</TableCell>
                 </TableRow>
               ))
             )}
@@ -92,7 +90,7 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
           <TableFooter>
             <TableRow>
               <TableCell colSpan={4}>Total</TableCell>
-              <TableCell className="text-right ">{total} IQD</TableCell>
+              <TableCell>{total} IQD</TableCell>
             </TableRow>
           </TableFooter>
         </Table>

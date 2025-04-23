@@ -1,5 +1,5 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "./Sidebar";
+import AppSidebar from "./Sidebar";
 import useAuthStore from "@/stores/useAuthStore";
 import LoginPage from "@/pages/LoginPage";
 import { Button } from "./ui/button";

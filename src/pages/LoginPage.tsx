@@ -14,6 +14,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useAuthStore from "@/stores/useAuthStore";
+import { useTranslation } from "react-i18next";
+import LangToggle from "@/components/LangToggle";
 
 const loginSchema = z.object({
   username: z.string({ required_error: "Username is required" }),
@@ -21,17 +23,15 @@ const loginSchema = z.object({
 });
 
 const LoginPage = () => {
+  const { t } = useTranslation();
+
   const form = useForm({
     resolver: zodResolver(loginSchema),
-    defaultValues: {
-      username: "",
-      password: "",
-    },
   });
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
     loginMutation.mutate(
-      { username: values.username, password: values.password },
+      { username: values.username.toLowerCase(), password: values.password },
       {
         onSuccess: (data) => {
           localStorage.setItem("token", data.token);
@@ -55,20 +55,18 @@ const LoginPage = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col w-md p-6 space-y-6 border rounded-4xl bg-background dark:bg-background shadow-2xl"
         >
-          <h1 className="text-4xl font-semibold">Login</h1>
+          <div className="flex justify-between">
+            <h1 className="text-4xl font-semibold">{t("login")}</h1>
+            <LangToggle />
+          </div>
           <FormField
             control={form.control}
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>{t("username")}</FormLabel>
                 <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="Username"
-                    {...field}
-                    required
-                  />
+                  <Input type="text" placeholder={t("username")} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -79,21 +77,20 @@ const LoginPage = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t("password")}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
-                    placeholder="Password"
+                    placeholder={t("password")}
                     autoComplete="off"
                     {...field}
-                    required
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Login</Button>
+          <Button type="submit">{t("login")}</Button>
         </form>
       </Form>
     </div>

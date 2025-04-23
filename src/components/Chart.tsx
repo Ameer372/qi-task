@@ -1,5 +1,3 @@
-"use client";
-
 import { TrendingUp } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
@@ -18,22 +16,18 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "January", orders: 186 },
+  { month: "February", orders: 305 },
+  { month: "March", orders: 237 },
+  { month: "April", orders: 73 },
+  { month: "May", orders: 209 },
+  { month: "June", orders: 214 },
 ];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  orders: {
+    label: "Orders",
     color: "hsl(var(--chart-1))",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
@@ -68,18 +62,10 @@ const Chart = () => {
               cursor={false}
               content={<ChartTooltipContent indicator="dot" />}
             />
+
             <Area
-              dataKey="mobile"
+              dataKey="orders"
               type="natural"
-              fill="var(--color-mobile)"
-              fillOpacity={0.4}
-              stroke="var(--color-mobile)"
-              stackId="a"
-            />
-            <Area
-              dataKey="desktop"
-              type="natural"
-              fill="var(--color-desktop)"
               fillOpacity={0.4}
               stroke="var(--color-desktop)"
               stackId="a"

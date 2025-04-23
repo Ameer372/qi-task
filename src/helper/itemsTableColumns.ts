@@ -1,4 +1,3 @@
-// itemsTableColumns.ts
 import { ColumnDef } from "@tanstack/react-table";
 import { Item } from "@/hooks/useItems";
 
