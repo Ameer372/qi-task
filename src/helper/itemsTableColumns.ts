@@ -25,9 +25,5 @@ export const itemColumns: ColumnDef<Item>[] = [
   {
     accessorKey: "price",
     header: "Price",
-    cell: ({ getValue }) => {
-      const value = getValue<number>();
-      return `${Number(value).toLocaleString()} IQD`;
-    },
   },
 ];

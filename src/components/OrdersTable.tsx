@@ -8,12 +8,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Input } from "./ui/input";
 import { Order } from "@/hooks/useOrders";
 import { Merchant } from "@/hooks/useMerchants";
 import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
+import { ArrowDown, ArrowUp } from "lucide-react"; // Optional icons
 
 interface OrdersTableProps {
   orders: Order[];
@@ -22,11 +23,32 @@ interface OrdersTableProps {
 
 const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
   const [search, setSearch] = useState("");
+  const [sortKey, setSortKey] = useState<"id" | "created_at" | "merchant_id">(
+    "id"
+  );
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const { t } = useTranslation();
 
-  const filteredOrders = orders.filter((order) =>
-    order.id.toString().includes(search)
-  );
+  const handleSort = (key: typeof sortKey) => {
+    if (key === sortKey) {
+      setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setSortKey(key);
+      setSortOrder("asc");
+    }
+  };
+
+  const filteredAndSortedOrders = useMemo(() => {
+    return orders
+      .filter((order) => order.id.toString().includes(search))
+      .sort((a, b) => {
+        const aVal = a[sortKey];
+        const bVal = b[sortKey];
+
+        if (sortOrder === "asc") return aVal > bVal ? 1 : -1;
+        else return aVal < bVal ? 1 : -1;
+      });
+  }, [orders, search, sortKey, sortOrder]);
 
   const total = orders
     .reduce((total, order) => total + Number(order.total), 0)
@@ -45,25 +67,66 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
           <TableCaption>{t("list_of_orders")}</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>{t("order_number")}</TableHead>
-              {merchants && <TableHead>{t("merchant")}</TableHead>}
-              <TableHead>{t("order_date")}</TableHead>
+              <TableHead
+                onClick={() => handleSort("id")}
+                className="cursor-pointer "
+              >
+                <div className="flex items-center gap-2">
+                  {t("order_number")}
+                  {sortKey === "id" &&
+                    (sortOrder === "asc" ? (
+                      <ArrowUp size={14} />
+                    ) : (
+                      <ArrowDown size={14} />
+                    ))}
+                </div>
+              </TableHead>
+              {merchants && (
+                <TableHead
+                  onClick={() => handleSort("merchant_id")}
+                  className="cursor-pointer"
+                >
+                  <div className="flex items-center gap-2">
+                    {t("merchant")}
+                    {sortKey === "merchant_id" &&
+                      (sortOrder === "asc" ? (
+                        <ArrowUp size={14} />
+                      ) : (
+                        <ArrowDown size={14} />
+                      ))}
+                  </div>
+                </TableHead>
+              )}
+              <TableHead
+                onClick={() => handleSort("created_at")}
+                className="cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  {t("order_date")}
+                  {sortKey === "created_at" &&
+                    (sortOrder === "asc" ? (
+                      <ArrowUp size={14} />
+                    ) : (
+                      <ArrowDown size={14} />
+                    ))}
+                </div>
+              </TableHead>
               <TableHead>{t("status")}</TableHead>
               <TableHead>{t("amount")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredOrders.length === 0 ? (
+            {filteredAndSortedOrders.length === 0 ? (
               <TableRow>
                 <TableCell
                   colSpan={5}
                   className="p-4 text-center text-gray-500"
                 >
-                  No orders found
+                  {t("no_orders_found")}
                 </TableCell>
               </TableRow>
             ) : (
-              filteredOrders.map((order) => (
+              filteredAndSortedOrders.map((order) => (
                 <TableRow key={order.id}>
                   <TableCell>{order.id}</TableCell>
                   {merchants && (
@@ -89,7 +152,7 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
           </TableBody>
           <TableFooter>
             <TableRow>
-              <TableCell colSpan={4}>Total</TableCell>
+              <TableCell colSpan={4}>{t("total")}</TableCell>
               <TableCell>{total} IQD</TableCell>
             </TableRow>
           </TableFooter>
