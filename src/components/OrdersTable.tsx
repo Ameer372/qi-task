@@ -13,6 +13,7 @@ import { Input } from "./ui/input";
 import { Order } from "@/hooks/useOrders";
 import { Merchant } from "@/hooks/useMerchants";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 
 interface OrdersTableProps {
   orders: Order[];
@@ -21,6 +22,7 @@ interface OrdersTableProps {
 
 const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
   const [search, setSearch] = useState("");
+  const { t } = useTranslation();
 
   const filteredOrders = orders.filter((order) =>
     order.id.toString().includes(search)
@@ -33,21 +35,21 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
   return (
     <>
       <Input
-        placeholder="Search Orders by id..."
+        placeholder={t("search_orders")}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="mb-4 w-full max-w-md px-4 py-2 shadow"
       />
       <div className="rounded-xl border p-4 shadow bg-background dark:bg-background">
         <Table>
-          <TableCaption>A list of your recent Orders.</TableCaption>
+          <TableCaption>{t("list_of_orders")}</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Order Number</TableHead>
-              <TableHead>Order Date</TableHead>
-              {merchants && <TableHead>Merchant</TableHead>}
-              <TableHead>Amount</TableHead>
-              <TableHead>Status</TableHead>
+              <TableHead>{t("order_number")}</TableHead>
+              <TableHead>{t("order_date")}</TableHead>
+              {merchants && <TableHead>{t("merchant")}</TableHead>}
+              <TableHead>{t("amount")}</TableHead>
+              <TableHead>{t("status")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

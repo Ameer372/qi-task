@@ -11,6 +11,7 @@ import {
 import { Merchant } from "@/hooks/useMerchants";
 import { Input } from "./ui/input";
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 
 interface MerchantTableProps {
   merchants: Merchant[];
@@ -18,6 +19,7 @@ interface MerchantTableProps {
 
 const MerchantTable = ({ merchants }: MerchantTableProps) => {
   const [search, setSearch] = useState("");
+  const { t } = useTranslation();
 
   const filteredMerchants = merchants.filter((merchant) =>
     merchant.name.toLowerCase().includes(search.toLowerCase())
@@ -34,13 +36,13 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
       />
       <div className="rounded-xl border p-4 shadow bg-background dark:bg-background">
         <Table>
-          <TableCaption>A list of Merchants.</TableCaption>
+          <TableCaption>{t("list_of_merchants")}</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Email</TableHead>
-              <TableHead>Phone</TableHead>
-              <TableHead>Joined</TableHead>
+              <TableHead>{t("name")}</TableHead>
+              <TableHead>{t("email")}</TableHead>
+              <TableHead>{t("phone")}</TableHead>
+              <TableHead>{t("joined_at")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
