@@ -1,4 +1,4 @@
-import ItemsTable from "@/components/ItemsTable";
+import ItemsTable from "@/components/itemsTable/ItemsTable";
 import OrdersTable from "@/components/OrdersTable";
 import {
   Card,

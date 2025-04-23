@@ -8,12 +8,18 @@ import {
 import { flexRender } from "@tanstack/react-table";
 import { useItemTable } from "@/hooks/useItemTable";
 import { Item } from "@/hooks/useItems";
-import TableRenderer from "@/helper/TableRenderer";
+import TableRenderer from "@/components/itemsTable/TableRenderer";
 import { useTranslation } from "react-i18next";
+import { Merchant } from "@/hooks/useMerchants";
 
-const ItemsTable = ({ items }: { items: Item[] }) => {
+interface ItemsTableProps {
+  items: Item[];
+  merchants?: Merchant[];
+}
+
+const ItemsTable = ({ items, merchants }: ItemsTableProps) => {
   const { t } = useTranslation();
-  const table = useItemTable(items);
+  const table = useItemTable(items, merchants);
 
   return (
     <div className="rounded-xl border p-4 shadow bg-background dark:bg-background">

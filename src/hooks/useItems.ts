@@ -8,6 +8,7 @@ export interface Item {
   description: string;
   category: string;
   price: number;
+  quantity: number;
 }
 
 const apiClient = new APIClient<Item[]>("/items");

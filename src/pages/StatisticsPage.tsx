@@ -25,7 +25,7 @@ const StatisticsPage = () => {
         <div className="p-6 flex gap-6 md:flex-row flex-col">
           {stats.map((stat) =>
             stat.href ? (
-              <Link href={stat.href} className={"flex-1"}>
+              <Link href={stat.href} key={stat.title} className={"flex-1"}>
                 <StatisticsCard
                   title={stat.title}
                   content={stat.count}
@@ -36,6 +36,7 @@ const StatisticsPage = () => {
               </Link>
             ) : (
               <StatisticsCard
+                key={stat.title}
                 title={stat.title}
                 content={stat.count}
                 icon={<stat.icon />}
@@ -60,7 +61,7 @@ const StatisticsPage = () => {
       <div className="p-6 flex gap-6 md:flex-row flex-col">
         {stats.map((stat) =>
           stat.href ? (
-            <Link href={stat.href} className={"flex-1"}>
+            <Link href={stat.href} key={stat.title} className={"flex-1"}>
               <StatisticsCard
                 title={stat.title}
                 content={stat.count}
@@ -71,6 +72,7 @@ const StatisticsPage = () => {
             </Link>
           ) : (
             <StatisticsCard
+              key={stat.title}
               title={stat.title}
               content={stat.count}
               icon={<stat.icon />}

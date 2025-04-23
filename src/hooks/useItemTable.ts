@@ -6,12 +6,13 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { Item } from "@/hooks/useItems";
-import { itemColumns } from "@/helper/itemsTableColumns";
-import { checkboxColumn } from "@/helper/checkboxColumns";
+import { getItemColumns } from "@/components/itemsTable/itemsTableColumns";
+import { checkboxColumn } from "@/components/itemsTable/checkboxColumns";
+import { Merchant } from "./useMerchants";
 
-export const useItemTable = (items: Item[]) => {
+export const useItemTable = (items: Item[], merchants?: Merchant[]) => {
   const [rowSelection, setRowSelection] = useState({});
-  const columns = [checkboxColumn, ...itemColumns];
+  const columns = [checkboxColumn, ...getItemColumns(merchants)];
 
   const table = useReactTable({
     data: items,
