@@ -7,6 +7,7 @@ export interface Order {
   status: "pending" | "completed";
   total: number;
   created_at: string;
+  discount: number;
 }
 
 const apiClient = new APIClient<Order[]>("/orders");

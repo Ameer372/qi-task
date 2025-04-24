@@ -1,28 +1,20 @@
 import { Item } from "@/hooks/useItems";
+
+import { tableHeads } from "./orderItemsHeads";
 import {
+  Table,
   TableCaption,
   TableHeader,
   TableRow,
   TableHead,
   TableBody,
   TableCell,
-  Table,
   TableFooter,
-} from "./ui/table";
+} from "../ui/table";
 
 const OrderItemsTable = ({ items }: { items: Item[] }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const orderedItems = items.map(({ quantity, ...rest }) => rest);
-
-  const tableHeads = [
-    "ID",
-    "Name",
-    "Description",
-    "Category",
-    "Quantity",
-    "Price",
-    "Total Price",
-  ];
 
   const total = orderedItems.reduce((acc, item) => {
     return acc + item.ordered_quantity! * item.price;
@@ -30,17 +22,17 @@ const OrderItemsTable = ({ items }: { items: Item[] }) => {
   return (
     <div className="border rounded-3xl p-4 w-[70%]">
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>Order Items</TableCaption>
         <TableHeader>
           <TableRow>
             {tableHeads.map((head) => (
-              <TableHead>{head}</TableHead>
+              <TableHead key={head}>{head}</TableHead>
             ))}
           </TableRow>
         </TableHeader>
         <TableBody>
           {orderedItems.map((item) => (
-            <TableRow>
+            <TableRow key={item.id}>
               <TableCell>{item.id}</TableCell>
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.description}</TableCell>

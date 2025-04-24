@@ -8,7 +8,7 @@ import {
 import { flexRender } from "@tanstack/react-table";
 import { useItemTable } from "@/hooks/useItemTable";
 import { Item } from "@/hooks/useItems";
-import TableRenderer from "@/components/itemsTable/TableRenderer";
+import TableRenderer from "@/components/items/TableRenderer";
 import { useTranslation } from "react-i18next";
 import { Merchant } from "@/hooks/useMerchants";
 

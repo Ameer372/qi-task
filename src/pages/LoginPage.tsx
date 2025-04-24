@@ -34,8 +34,8 @@ const LoginPage = () => {
       { username: values.username.toLowerCase(), password: values.password },
       {
         onSuccess: (data) => {
-          localStorage.setItem("token", data.token);
-          useAuthStore.getState().login(data.token);
+          localStorage.setItem("token", data!.token);
+          useAuthStore.getState().login(data!.token);
           navigate("/");
         },
         onError: (error) => {

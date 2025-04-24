@@ -1,9 +1,9 @@
 import StatisticsCard from "@/components/StatisticsCard";
-import OrdersTable from "@/components/OrdersTable";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link } from "wouter";
 import useStatistics from "@/hooks/useStatistics";
 import { useTranslation } from "react-i18next";
+import OrdersTable from "@/components/orders/OrdersTable";
 
 const StatisticsPage = () => {
   const isMobile = useIsMobile();

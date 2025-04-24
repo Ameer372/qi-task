@@ -22,7 +22,7 @@ const useLogin = () => {
       password: string;
     }) => {
       const data = await apiClient.login(username, password);
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data!.token);
       return data;
     },
   });

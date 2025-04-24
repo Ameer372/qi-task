@@ -12,7 +12,7 @@ const MerchantsPage = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">
+      <h1 className="text-3xl font-semibold mb-4">
         {t("merchants_management")}
       </h1>
       <MerchantTable merchants={merchants} />

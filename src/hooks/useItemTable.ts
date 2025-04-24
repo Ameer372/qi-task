@@ -6,8 +6,8 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { Item } from "@/hooks/useItems";
-import { getItemColumns } from "@/components/itemsTable/itemsTableColumns";
-import { checkboxColumn } from "@/components/itemsTable/checkboxColumns";
+import { getItemColumns } from "@/components/items/itemsTableColumns";
+import { checkboxColumn } from "@/components/items/checkboxColumns";
 import { Merchant } from "./useMerchants";
 
 export const useItemTable = (items: Item[], merchants?: Merchant[]) => {

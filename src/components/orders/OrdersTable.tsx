@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState, useMemo } from "react";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 import { Order } from "@/hooks/useOrders";
 import { Merchant } from "@/hooks/useMerchants";
 import { useLocation } from "wouter";

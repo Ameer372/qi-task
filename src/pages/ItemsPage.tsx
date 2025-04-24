@@ -1,4 +1,4 @@
-import ItemsTable from "@/components/itemsTable/ItemsTable";
+import ItemsTable from "@/components/items/ItemsTable";
 import useItems from "@/hooks/useItems";
 import useMerchants from "@/hooks/useMerchants";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ const ItemsPage = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">{t("items")}</h1>
+      <h1 className="text-3xl font-semibold mb-4">{t("items")}</h1>
       <ItemsTable items={items} merchants={merchants} />
     </div>
   );

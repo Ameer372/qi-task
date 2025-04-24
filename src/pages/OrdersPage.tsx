@@ -1,4 +1,4 @@
-import OrdersTable from "@/components/OrdersTable";
+import OrdersTable from "@/components/orders/OrdersTable";
 import useMerchants from "@/hooks/useMerchants";
 import useOrders from "@/hooks/useOrders";
 import { useTranslation } from "react-i18next";
@@ -13,7 +13,7 @@ const OrdersPage = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">{t("orders_management")}</h1>
+      <h1 className="text-3xl font-semibold mb-4">{t("orders_management")}</h1>
       <OrdersTable orders={orders} merchants={merchants} />
     </div>
   );
