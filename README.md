@@ -140,7 +140,3 @@ Make sure to configure environment variables correctly in your deployed environm
 ## 📝 License
 
 This project is licensed under the MIT License.
-
-```
-
-```
