@@ -3,9 +3,12 @@ import OrderItemsTable from "@/components/orders/OrderItemsTable";
 import OrderSummaryCard from "@/components/orders/OrderSummaryCard";
 
 import useOrder from "@/hooks/useOrder";
+import { useTranslation } from "react-i18next";
 import { useParams } from "wouter";
 
 const OrderDetialsPage = () => {
+  const { t } = useTranslation();
+
   const { id } = useParams();
   const { data, isLoading, error } = useOrder(id!);
 
@@ -21,9 +24,14 @@ const OrderDetialsPage = () => {
 
   return (
     <div className="p-10">
-      <h1 className="text-3xl font-semibold my">Order Detials</h1>
-      <p className="font-extralight">Order Number: #{order.id}</p>
-      <div className="my-10">
+      <h1 className="text-3xl font-semibold mb-2">{t("order_details")}</h1>
+      <p className="font-extralight">
+        {t("order_number")}: #{order.id}
+      </p>
+      <p className="font-extralight">
+        {t("order_date")}: {order.created_at.split("T")[0]}
+      </p>
+      <div className="my-6">
         <MerchantCard merchant={merchant} />
         <div className="flex gap-10">
           <OrderItemsTable items={items} />

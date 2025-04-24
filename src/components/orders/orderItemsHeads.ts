@@ -1,9 +1,15 @@
-export const tableHeads = [
-  "ID",
-  "Name",
-  "Description",
-  "Category",
-  "Quantity",
-  "Price",
-  "Total Price",
-];
+const getHeads = () => {
+  const tableHeads = [
+    "id",
+    "name",
+    "description",
+    "category",
+    "quantity",
+    "price",
+    "total_price",
+  ];
+
+  return tableHeads;
+};
+
+export default getHeads;

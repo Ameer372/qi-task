@@ -1,6 +1,6 @@
 import { Item } from "@/hooks/useItems";
 
-import { tableHeads } from "./orderItemsHeads";
+import getHeads from "./orderItemsHeads";
 import {
   Table,
   TableCaption,
@@ -11,10 +11,14 @@ import {
   TableCell,
   TableFooter,
 } from "../ui/table";
+import { useTranslation } from "react-i18next";
 
 const OrderItemsTable = ({ items }: { items: Item[] }) => {
+  const { t } = useTranslation();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const orderedItems = items.map(({ quantity, ...rest }) => rest);
+
+  const tableHeads = getHeads();
 
   const total = orderedItems.reduce((acc, item) => {
     return acc + item.ordered_quantity! * item.price;
@@ -26,7 +30,7 @@ const OrderItemsTable = ({ items }: { items: Item[] }) => {
         <TableHeader>
           <TableRow>
             {tableHeads.map((head) => (
-              <TableHead key={head}>{head}</TableHead>
+              <TableHead key={head}>{t(head)}</TableHead>
             ))}
           </TableRow>
         </TableHeader>
@@ -48,7 +52,7 @@ const OrderItemsTable = ({ items }: { items: Item[] }) => {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={6}>Total</TableCell>
+            <TableCell colSpan={6}>{t("total")}</TableCell>
             <TableCell>{total.toLocaleString() + " IQD"}</TableCell>
           </TableRow>
         </TableFooter>

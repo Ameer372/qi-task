@@ -28,14 +28,27 @@ const ItemsTable = ({ items, merchants }: ItemsTableProps) => {
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
-                </TableHead>
-              ))}
+              {headerGroup.headers.map((header) =>
+                // because of the first header is a checkbox i could not apply translation
+                // i need to seprate the checkbox from the other headers
+                header.id === "select" ? (
+                  <th key={header.id}>
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </th>
+                ) : (
+                  <TableHead key={header.id}>
+                    {t(
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      ) as string
+                    )}
+                  </TableHead>
+                )
+              )}
             </TableRow>
           ))}
         </TableHeader>

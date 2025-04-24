@@ -6,8 +6,10 @@ import {
   CardContent,
   CardDescription,
 } from "../ui/card";
+import { useTranslation } from "react-i18next";
 
 const OrderSummaryCard = ({ order }: { order: Order }) => {
+  const { t } = useTranslation();
   const totalAfterDiscount = (
     order.total *
     (1 - order.discount)
@@ -17,22 +19,24 @@ const OrderSummaryCard = ({ order }: { order: Order }) => {
   return (
     <Card className="mb-4 w-sm">
       <CardHeader>
-        <CardTitle className="font-semibold text-xl">Order Summary</CardTitle>
+        <CardTitle className="font-semibold text-xl">
+          {t("order_summary")}
+        </CardTitle>
       </CardHeader>
       <CardContent className="font-bold text-2xl">
         <CardDescription className="flex flex-col gap-5">
           <p className="flex justify-between">
-            sub total:
+            {t("sub_total")}:
             <span className="text-primary">
               {Number(order.total).toLocaleString()}
             </span>
           </p>
           <p className="flex justify-between">
-            discount:
+            {t("discount")}:
             <span className="text-primary">{order.discount * 100}%</span>
           </p>
           <p className="flex justify-between">
-            total:
+            {t("total")}:
             <span className="text-primary">{totalAfterDiscount} IQD</span>
           </p>
         </CardDescription>

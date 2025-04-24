@@ -34,5 +34,11 @@
   "orders": "Orders",
   "installments": "Installments",
   "username": "Username",
-  "password": "Password"
+  "password": "Password",
+  "order_details": "Order Details",
+  "quantity": "Quantity",
+  "total_price": "Total Price",
+  "order_summary": "Order Summary",
+  "sub_total": "Sub Total",
+  "discount": "Discount"
 }

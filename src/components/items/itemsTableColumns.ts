@@ -7,27 +7,27 @@ export const getItemColumns = (merchants?: Merchant[]): ColumnDef<Item>[] => {
     return [
       {
         accessorKey: "id",
-        header: "ID",
+        header: "id",
       },
       {
         accessorKey: "name",
-        header: "Name",
+        header: "name",
       },
       {
         accessorKey: "description",
-        header: "Description",
+        header: "description",
       },
       {
         accessorKey: "quantity",
-        header: "Quantity",
+        header: "quantity",
       },
       {
         accessorKey: "category",
-        header: "Category",
+        header: "category",
       },
       {
         accessorKey: "price",
-        header: "Price",
+        header: "price",
       },
     ];
   }
@@ -35,11 +35,11 @@ export const getItemColumns = (merchants?: Merchant[]): ColumnDef<Item>[] => {
   return [
     {
       accessorKey: "id",
-      header: "ID",
+      header: "id",
     },
     {
       accessorKey: "merchant_id",
-      header: "Merchant",
+      header: "merchant",
       cell: ({ getValue }) => {
         const merchantId = getValue<number>();
         const merchant = merchants?.find((m) => m.id === merchantId);
@@ -48,23 +48,23 @@ export const getItemColumns = (merchants?: Merchant[]): ColumnDef<Item>[] => {
     },
     {
       accessorKey: "name",
-      header: "Name",
+      header: "name",
     },
     {
       accessorKey: "description",
-      header: "Description",
+      header: "description",
     },
     {
       accessorKey: "quantity",
-      header: "Quantity",
+      header: "quantity",
     },
     {
       accessorKey: "category",
-      header: "Category",
+      header: "category",
     },
     {
       accessorKey: "price",
-      header: "Price",
+      header: "price",
     },
   ];
 };

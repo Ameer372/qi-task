@@ -34,5 +34,11 @@
   "orders": "الطلبات",
   "installments": "الأقساط",
   "username": "اسم المستخدم",
-  "password": "رمز الدخول"
+  "password": "رمز الدخول",
+  "order_details": "تفاصيل الطلب",
+  "quantity": "الكمية",
+  "total_price": "الإجمالي",
+  "order_summary": "ملخص الطلب",
+  "sub_total": "المجموع الفرعي",
+  "discount": "الخصم"
 }
