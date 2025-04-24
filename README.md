@@ -2,13 +2,14 @@ Perfect, thanks for the detailed info, Amir! Here's a clean and professional `RE
 
 ---
 
-```markdown
+````markdown
 # E-Commerce Admin Dashboard
 
 An admin dashboard for managing an e-commerce platform. Built with a modern stack featuring **React**, **Vite**, **Tailwind CSS**, and **ShadCN** on the frontend, with **Node.js**, **Express.js**, and **MySQL** on the backend.
 
 ## 📁 Project Structure
-```
+
+```bash
 
 root/
 ├── backend/ # Express backend
@@ -25,18 +26,20 @@ root/
 ├── package.json
 ├── tailwind.config.js
 └── README.md
-
+```
 ````
 
 ## 🧰 Tech Stack
 
 ### Frontend
+
 - **React** + **Vite** for fast development
 - **Tailwind CSS** for styling
 - **ShadCN** for accessible UI components
 - **clsx + tailwind-merge** for class management
 
 ### Backend
+
 - **Node.js** with **Express.js**
 - **MySQL2** for database
 - **JWT Authentication**
@@ -46,14 +49,16 @@ root/
 ## ⚙️ Getting Started
 
 ### Prerequisites
+
 - Node.js
 - MySQL
 
 ### Clone the Repo
+
 ```bash
 git clone https://github.com/yourusername/your-repo-name.git
 cd your-repo-name
-````
+```
 
 ---
 
