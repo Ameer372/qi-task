@@ -4,13 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import { Item } from "./useItems";
 import { Order } from "./useOrders";
 
-interface Props {
+interface MerchantRespone {
   merchant: Merchant;
   items: Item[];
   orders: Order[];
 }
 
-const apiClient = new APIClient<Props>("/merchants");
+const apiClient = new APIClient<MerchantRespone>("/merchants");
 const useMerchant = (id: string) => {
   return useQuery({
     queryKey: ["merchant", id],

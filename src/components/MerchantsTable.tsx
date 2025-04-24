@@ -62,7 +62,7 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
                 <TableRow
                   onClick={() => navigate(`/merchants/${merchant.id}`)}
                   key={merchant.id}
-                  className="cursor-pointer hover:font-semibold transition-all ease-in"
+                  className="cursor-pointer hover:text-[#fbbf24] transition-all duration-300 ease-in-out"
                 >
                   <TableCell>{merchant.id}</TableCell>
                   <TableCell>{merchant.name}</TableCell>

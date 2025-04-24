@@ -152,11 +152,36 @@ app.get("/merchants/:id", authenticateToken, async (req, res) => {
 app.get("/orders/:id", authenticateToken, async (req, res) => {
   const id = req.params.id;
   try {
-    const [rows] = await db.execute("SELECT * FROM orders WHERE id = ?", [id]);
-    if (rows.length === 0) {
+    const [orderRows] = await db.execute("SELECT * FROM orders WHERE id = ?", [
+      id,
+    ]);
+
+    if (orderRows.length === 0) {
       return res.status(404).json({ error: "Order not found" });
     }
-    res.json(rows[0]);
+
+    const [merchantRows] = await db.execute(
+      "SELECT * FROM merchants WHERE id = ?",
+      [orderRows[0].merchant_id]
+    );
+
+    if (merchantRows.length === 0) {
+      return res.status(404).json({ error: "Merchant not found" });
+    }
+
+    const [itemRows] = await db.execute(
+      `SELECT items.*, order_items.quantity AS ordered_quantity
+       FROM order_items
+       JOIN items ON order_items.item_id = items.id
+       WHERE order_items.order_id = ?`,
+      [id]
+    );
+
+    res.json({
+      order: orderRows[0],
+      merchant: merchantRows[0],
+      items: itemRows,
+    });
   } catch (err) {
     console.error("Error:", err);
     res.status(500).json({ error: "Failed to get order" });

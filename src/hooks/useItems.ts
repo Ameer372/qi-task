@@ -9,6 +9,7 @@ export interface Item {
   category: string;
   price: number;
   quantity: number;
+  ordered_quantity?: number;
 }
 
 const apiClient = new APIClient<Item[]>("/items");

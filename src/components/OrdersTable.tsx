@@ -12,7 +12,7 @@ import { useState, useMemo } from "react";
 import { Input } from "./ui/input";
 import { Order } from "@/hooks/useOrders";
 import { Merchant } from "@/hooks/useMerchants";
-import { Link } from "wouter";
+import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { ArrowDown, ArrowUp } from "lucide-react"; // Optional icons
 
@@ -22,6 +22,7 @@ interface OrdersTableProps {
 }
 
 const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
+  const [, navigate] = useLocation();
   const [search, setSearch] = useState("");
   const [sortKey, setSortKey] = useState<"id" | "created_at" | "merchant_id">(
     "id"
@@ -127,20 +128,24 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
               </TableRow>
             ) : (
               filteredAndSortedOrders.map((order) => (
-                <TableRow key={order.id}>
+                <TableRow
+                  key={order.id}
+                  onClick={() => navigate(`/orders/${order.id}`)}
+                  className="cursor-pointer hover:text-[#fbbf24] transition-all duration-300 ease-in-out"
+                >
                   <TableCell>{order.id}</TableCell>
                   {merchants && (
                     <TableCell>
-                      <Link
+                      {/* <Link
                         href={`/merchants/${order.merchant_id}`}
                         className={"underline hover:text-yellow-300"}
-                      >
-                        {
-                          merchants.find(
-                            (merchant) => merchant.id === order.merchant_id
-                          )?.name
-                        }
-                      </Link>
+                      > */}
+                      {
+                        merchants.find(
+                          (merchant) => merchant.id === order.merchant_id
+                        )?.name
+                      }
+                      {/* </Link> */}
                     </TableCell>
                   )}
                   <TableCell>{order.created_at.split("T")[0]}</TableCell>
