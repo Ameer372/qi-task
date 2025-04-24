@@ -152,7 +152,7 @@ const OrdersTable = ({ orders, merchants }: OrdersTableProps) => {
           </TableBody>
           <TableFooter>
             <TableRow>
-              <TableCell colSpan={4}>{t("total")}</TableCell>
+              <TableCell colSpan={merchants ? 4 : 3}>{t("total")}</TableCell>
               <TableCell>{total} IQD</TableCell>
             </TableRow>
           </TableFooter>

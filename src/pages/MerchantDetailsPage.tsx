@@ -15,7 +15,7 @@ const MerchantDetailsPage = () => {
   const { id } = useParams();
   const { data } = useMerchant(id!);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <div>Not Found 404</div>;
 
   const merchant = data.merchant;
 
@@ -41,7 +41,7 @@ const MerchantDetailsPage = () => {
           </CardDescription>
         </CardContent>
       </Card>
-      <div>
+      <div className="w-[75%]">
         <h1 className="text-2xl font-semibold my-4">Items</h1>
         <ItemsTable items={data.items} />
         <h1 className="text-2xl font-semibold my-4">Orders</h1>

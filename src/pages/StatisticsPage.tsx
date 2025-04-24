@@ -83,9 +83,8 @@ const StatisticsPage = () => {
       {/*Last Orders Table*/}
       <div className="p-6">
         <h1 className="text-2xl font-semibold mb-4">{t("recent_orders")}</h1>
-        <div className="flex-1 w-[75%]">
-          <OrdersTable orders={orders} merchants={merchants} />
-        </div>
+
+        <OrdersTable orders={orders} merchants={merchants} />
       </div>
     </div>
   );

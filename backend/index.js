@@ -149,6 +149,20 @@ app.get("/merchants/:id", authenticateToken, async (req, res) => {
   }
 });
 
+app.get("/orders/:id", authenticateToken, async (req, res) => {
+  const id = req.params.id;
+  try {
+    const [rows] = await db.execute("SELECT * FROM orders WHERE id = ?", [id]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: "Order not found" });
+    }
+    res.json(rows[0]);
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ error: "Failed to get order" });
+  }
+});
+
 app.listen(3000, () => {
   console.log("Server started on port 3000!");
 });

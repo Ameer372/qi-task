@@ -20,19 +20,31 @@ class APIClient<T> {
   }
 
   getAll = () => {
-    return axiosInstance.get<T>(this.endpoint).then((res) => res.data);
+    return axiosInstance
+      .get<T>(this.endpoint)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
   };
 
   getMerchant = (id: string) => {
     return axiosInstance
       .get<T>(this.endpoint + "/" + id)
-      .then((res) => res.data);
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
+
+  getOrder = (id: string) => {
+    return axiosInstance
+      .get<T>(this.endpoint + "/" + id)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
   };
 
   login = (username: string, password: string) => {
     return axiosInstance
       .post<T>(this.endpoint, { username, password })
-      .then((res) => res.data);
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
   };
 }
 
