@@ -29,7 +29,7 @@
   "description": "الوصف",
   "category": "القسم",
   "price": "السعر",
-  "search_merchants:": "ابحث عن المتاجر بواسطة الاسم...",
+  "search_merchants": "...ابحث عن المتاجر بواسطة الاسم",
   "loading": "...جاري التحميل",
   "orders": "الطلبات",
   "installments": "الأقساط",
@@ -40,5 +40,8 @@
   "total_price": "الإجمالي",
   "order_summary": "ملخص الطلب",
   "sub_total": "المجموع الفرعي",
-  "discount": "الخصم"
+  "discount": "الخصم",
+  "no_orders_found": "لا يوجد طلبات متاحة ",
+  "no_merchants_found": "لا يوجد متاجر متاحة ",
+  "no_items_found": "لا يوجد بضائع متاحة "
 }

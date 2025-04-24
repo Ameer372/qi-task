@@ -30,7 +30,7 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
     <>
       <Input
         type="text"
-        placeholder="Search merchant by name..."
+        placeholder={t("search_merchants")}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="mb-4 w-full max-w-md px-4 py-2 shadow"
@@ -51,10 +51,10 @@ const MerchantTable = ({ merchants }: MerchantTableProps) => {
             {filteredMerchants.length === 0 ? (
               <TableRow>
                 <TableCell
-                  colSpan={4}
+                  colSpan={5}
                   className="p-4 text-center text-gray-500"
                 >
-                  No merchant found with that name.
+                  {t("no_merchants_found")}
                 </TableCell>
               </TableRow>
             ) : (

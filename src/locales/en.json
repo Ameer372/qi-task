@@ -29,7 +29,7 @@
   "description": "Description",
   "category": "Category",
   "price": "Price",
-  "search_merchants:": "Search Merchants by name...",
+  "search_merchants": "Search Merchants by name...",
   "loading": "Loading...",
   "orders": "Orders",
   "installments": "Installments",
@@ -40,5 +40,8 @@
   "total_price": "Total Price",
   "order_summary": "Order Summary",
   "sub_total": "Sub Total",
-  "discount": "Discount"
+  "discount": "Discount",
+  "no_orders_found": "No orders found",
+  "no_merchants_found": "No merchants found",
+  "no_items_found": "No items found"
 }

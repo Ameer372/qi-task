@@ -15,7 +15,6 @@ const OrderSummaryCard = ({ order }: { order: Order }) => {
     (1 - order.discount)
   ).toLocaleString();
 
-  console.log(order.discount);
   return (
     <Card className="mb-4 w-sm">
       <CardHeader>
