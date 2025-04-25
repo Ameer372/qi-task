@@ -27,7 +27,7 @@
   "list_of_items": "قائمة البضائع",
   "id": "الرقم التعريفي",
   "description": "الوصف",
-  "category": "القسم",
+  "category": "الفئة",
   "price": "السعر",
   "search_merchants": "...ابحث عن المتاجر بواسطة الاسم",
   "loading": "...جاري التحميل",

@@ -13,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <SidebarProvider>
           <AppSidebar />
           <main className="w-full p-6">
-            <SidebarTrigger className="md:hidden" />
+            <SidebarTrigger />
             <div className="background dark:opacity-100">
               <img src={logo} />
             </div>

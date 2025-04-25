@@ -7,16 +7,18 @@ import {
   CardDescription,
 } from "../ui/card";
 import { useTranslation } from "react-i18next";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const OrderSummaryCard = ({ order }: { order: Order }) => {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
   const totalAfterDiscount = (
     order.total *
     (1 - order.discount)
   ).toLocaleString();
 
   return (
-    <Card className="mb-4 w-sm">
+    <Card className={isMobile ? "w-full" : "w-[25%]"}>
       <CardHeader>
         <CardTitle className="font-semibold text-xl">
           {t("order_summary")}
