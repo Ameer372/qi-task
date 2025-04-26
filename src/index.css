@@ -126,9 +126,17 @@
   background-position: center;
 }
 
-.background {
+.background-dark {
   position: fixed;
   opacity: 0.03;
+  left: -10%;
+  width: 50%;
+  z-index: -1;
+}
+
+.background-light {
+  position: fixed;
+  opacity: 0.1;
   left: -10%;
   width: 50%;
   z-index: -1;

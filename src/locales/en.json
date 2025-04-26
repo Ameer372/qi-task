@@ -43,5 +43,6 @@
   "discount": "Discount",
   "no_orders_found": "No orders found",
   "no_merchants_found": "No merchants found",
-  "no_items_found": "No items found"
+  "no_items_found": "No items found",
+  "order_items": "Order Items"
 }

@@ -28,7 +28,7 @@ const OrderItemsTable = ({ items }: { items: Item[] }) => {
   return (
     <div className={`border rounded-3xl p-4 ${!isMobile && "w-[75%]"}`}>
       <Table>
-        <TableCaption>Order Items</TableCaption>
+        <TableCaption>{t("order_items")}</TableCaption>
         <TableHeader>
           <TableRow>
             {tableHeads.map((head) => (

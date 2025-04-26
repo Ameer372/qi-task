@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <AppSidebar />
           <main className="w-full p-6">
             <SidebarTrigger />
-            <div className="background dark:opacity-100">
+            <div className="background-light dark:background-dark">
               <img src={logo} />
             </div>
             {children}

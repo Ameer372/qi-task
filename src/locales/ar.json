@@ -43,5 +43,6 @@
   "discount": "الخصم",
   "no_orders_found": "لا يوجد طلبات متاحة ",
   "no_merchants_found": "لا يوجد متاجر متاحة ",
-  "no_items_found": "لا يوجد بضائع متاحة "
+  "no_items_found": "لا يوجد بضائع متاحة ",
+  "order_items": "بضائع الطلب"
 }
