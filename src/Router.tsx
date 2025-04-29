@@ -1,21 +1,23 @@
-import { Route } from "wouter";
+import { Route, Switch } from "wouter";
 import OrdersPage from "./pages/OrdersPage";
 import MerchantsPage from "./pages/MerchantsPage";
 import StatisticsPage from "./pages/StatisticsPage";
 import MerchantDetailsPage from "./pages/MerchantDetailsPage";
 import ItemsPage from "./pages/ItemsPage";
 import OrderDetialsPage from "./pages/OrderDetialsPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const Router = () => {
   return (
-    <div>
+    <Switch>
       <Route path="/" component={StatisticsPage} />
       <Route path="/orders" component={OrdersPage} />
       <Route path="/items" component={ItemsPage} />
       <Route path="/merchants" component={MerchantsPage} />
       <Route path={"/merchants/:id"} component={MerchantDetailsPage} />
       <Route path={"/orders/:id"} component={OrderDetialsPage} />
-    </div>
+      <Route component={ErrorPage} />
+    </Switch>
   );
 };
 

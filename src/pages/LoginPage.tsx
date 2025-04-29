@@ -24,6 +24,7 @@ const loginSchema = z.object({
 
 const LoginPage = () => {
   const { t } = useTranslation();
+  const loginMutation = useAuth();
 
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -45,8 +46,6 @@ const LoginPage = () => {
       }
     );
   };
-
-  const loginMutation = useAuth();
 
   return (
     <div className="flex items-center justify-center h-screen gap-4 login">
